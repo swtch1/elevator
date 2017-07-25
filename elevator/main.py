@@ -1,3 +1,5 @@
+from elevator.errors import FloorError
+
 class Elevator(object):
     def __init__(self, num_floors: int):
         """
@@ -14,7 +16,7 @@ class Elevator(object):
         :return: int, value of the calling floor once arrived
         """
         if calling_floor not in range(0, self._num_floors + 1):
-            raise ValueError('invalid floor')
+            raise FloorError('invalid floor')
         if calling_floor == self._current_floor:
             self._ding()
             return self._current_floor
@@ -31,7 +33,7 @@ class Elevator(object):
         :return: int, value of the destination floor once arrived
         """
         if destination_floor not in range(0, self._num_floors + 1):
-            raise ValueError('invalid floor')
+            raise FloorError('invalid floor')
         if destination_floor == self._current_floor:
             self._ding()
             return self._current_floor
